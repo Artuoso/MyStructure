@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <context id="mysql" targetRuntime="MyBatis3">
+
+        <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
+        一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖。 -->
+        <property name="autoDelimitKeywords" value="false"/>
+        <!-- 生成的Java文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+
+        <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 是否生成注释 -->
+        <commentGenerator>
+            <!-- 阻止生成注释 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 阻止生成的注释包含时间戳 -->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接地址账号密码 -->
+        <!-- mysql8.0以下 -->
+<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/uniapi_dev"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>-->
+        <!-- mysql8.0及以上 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/uniapi_dev?serverTimezone=GMT%2B8"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <!-- 指定JDBC类型和Java类型如何转换 -->
+        <javaTypeResolver>
+            <!-- 是否强制DECIMAL和NUMERIC类型的字段转换为Java类型的java.math.BigDecimal，默认值为false。 -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.uni.generated.entity" targetProject="src/main/java">
+            <!--<property name="rootClass" value="com.uni.common.base.BaseCrudEntity"/>-->
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="false"/>
+        </javaModelGenerator>
+
+        <!--生成XML映射文件存放位置-->
+        <sqlMapGenerator targetPackage="com.uni.generated.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--生成Dao类存放位置-->
+        <!-- 生成Mapper和XML文件的形式
+                type="ANNOTATEDMAPPER"，只生成Mapper接口，sql在Mapper接口的注解中。
+                type="MIXEDMAPPER"，混合生成Mapper接口和XML文件，基础增删改查sql在Mapper接口的注解中，较复杂的选择性增删改查sql在XML文件中。
+                type="XMLMAPPER"，生成Mapper接口和对应XML文件，所有sql都在XML文件中。
+        -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.uni.generated.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--需要生成代码的对应表及生成的类名，如果要生成全部表 tableName="%" -->
+        <table tableName="demo_user" domainObjectName="DemoUser"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false">
+            <!-- 执行插入后可通过对象的getId()方法获取主键值 -->
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <!-- 对指定列设置定制属性名称，不使用自动生成的属性名 -->
+            <columnOverride column="is_have_sect" property="haveSectFlag" />
+            <!-- 忽略指定列生成对应属性 -->
+            <!--<ignoreColumn column="remark" />-->
+        </table>
+
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  mvc:
+    servlet:
+      path: /uniapi
+
+  datasource:
+    name: unids
+    type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: com.mysql.jdbc.Driver    # mysql8.0以下版本
+    driver-class-name: com.mysql.cj.jdbc.Driver    # mysql8.0及以上版本
+    #基本属性
+    url: jdbc:mysql://localhost:3306/uniapi_dev?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+mybatis:
+    mapper-locations: classpath:mapper/modules/**/*.xml
+    type-aliases-package: com.uni
+
+# 引入log4j2的配置文件
+logging:
+  config: classpath:log4j2.yml
+
+# 业务参数配置
+business:
+  enterpriseWeChat:
+    corpID: zzz123
+    token: gKbg3HvM3GuGpYReGio
+    encodingAESKey: kvVticVreoi6FBy5RHrbQbAt8LsOqVH6pAV2F3U27Qh
