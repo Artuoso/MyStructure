@@ -1,4 +1,4 @@
-package com.uni.common.utils;
+package com.uni.common.util;
 
 /**
 * @Description 字符串工具类
