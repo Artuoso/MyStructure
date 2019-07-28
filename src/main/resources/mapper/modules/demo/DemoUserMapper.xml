@@ -75,4 +75,10 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
+    <select id="listAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from demo_user
+    </select>
+
 </mapper>

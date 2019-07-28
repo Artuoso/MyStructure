@@ -1,5 +1,7 @@
 package com.uni.common.base.service;
 
+import com.github.pagehelper.PageInfo;
+
 /**
 * @description 增删改查Service接口
 *
@@ -48,4 +50,11 @@ public interface BaseCrudService<T> extends BaseService {
      * @author Created by zc on 2019/6/28
      */
     int delete(T entity);
+
+    /**
+     * 分页查询
+     *
+     * @author Created by zc on 2019/7/28
+     */
+    PageInfo<T> listByPage(int pageNum, int pageSize);
 }

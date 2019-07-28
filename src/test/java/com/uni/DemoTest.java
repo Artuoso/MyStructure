@@ -1,5 +1,6 @@
 package com.uni;
 
+import com.github.pagehelper.PageInfo;
 import com.uni.modules.demo.entity.DemoUser;
 import com.uni.modules.demo.service.DemoUserService;
 import org.junit.Test;
@@ -9,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -50,6 +53,21 @@ public class DemoTest {
         logger.info("----这是info");
         logger.warn("--这是warn");
         logger.error("----这是error");
+    }
+
+    /**
+     * 分页测试
+     *
+     * @author Created by zc on 2019/7/28
+     */
+    @Test
+    public void pageTest() {
+        PageInfo<DemoUser> pageInfo = demoUserService.listByPage(2, 5);
+        List<DemoUser> users = pageInfo.getList();
+        for (DemoUser user : users) {
+            logger.debug("id：" + user.getId() + " " + user.getName() + " " + user.getSectName());
+        }
+        logger.debug("总数：" + pageInfo.getTotal());
     }
 
 }

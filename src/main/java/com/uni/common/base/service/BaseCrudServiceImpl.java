@@ -1,5 +1,7 @@
 package com.uni.common.base.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.uni.common.base.dao.BaseCrudDao;
 import com.uni.common.base.entity.BaseCrudEntity;
 import org.slf4j.Logger;
@@ -96,5 +98,16 @@ public abstract class BaseCrudServiceImpl<D extends BaseCrudDao<T>, T extends Ba
     @Transactional
     public int delete(T entity) {
         return dao.delete(entity);
+    }
+
+    /**
+     * 分页查询
+     *
+     * @author Created by zc on 2019/7/28
+     */
+    @Override
+    public PageInfo<T> listByPage(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize, true);
+        return new PageInfo<>(dao.listAll());
     }
 }

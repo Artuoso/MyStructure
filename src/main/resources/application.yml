@@ -19,6 +19,13 @@ mybatis:
     mapper-locations: classpath:mapper/modules/**/*.xml
     type-aliases-package: com.uni
 
+#pagehelper
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
 # 引入log4j2的配置文件
 logging:
   config: classpath:log4j2.yml

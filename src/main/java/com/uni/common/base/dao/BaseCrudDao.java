@@ -1,5 +1,7 @@
 package com.uni.common.base.dao;
 
+import java.util.List;
+
 /**
 * @description 数据基础Dao接口
 *
@@ -48,5 +50,12 @@ public interface BaseCrudDao<T> extends BaseDao {
      * @author Created by zc on 2019/6/28
      */
     int delete(T entity);
+
+    /**
+     * 查询所有数据
+     *
+     * @author Created by zc on 2019/7/28
+     */
+    List<T> listAll();
 
 }
