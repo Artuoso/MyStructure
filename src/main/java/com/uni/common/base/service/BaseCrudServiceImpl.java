@@ -107,7 +107,7 @@ public abstract class BaseCrudServiceImpl<D extends BaseCrudDao<T>, T extends Ba
      */
     @Override
     public PageInfo<T> listByPage(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize, true);
+        PageHelper.startPage(pageNum, pageSize);
         return new PageInfo<>(dao.listAll());
     }
 }
