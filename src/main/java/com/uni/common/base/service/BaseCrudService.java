@@ -31,7 +31,7 @@ public interface BaseCrudService<T> extends BaseService {
     int update(T entity);
 
     /**
-     * 根据传入对象的主键部分更新数据
+     * 根据传入对象的主键更新部分数据
      *
      * @author Created by zc on 2019/7/2
      */

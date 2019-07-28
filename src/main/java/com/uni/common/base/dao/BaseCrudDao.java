@@ -24,7 +24,7 @@ public interface BaseCrudDao<T> extends BaseDao {
     int insert(T entity);
 
     /**
-     * 更新数据
+     * 根据主键更新数据
      *
      * @author Created by zc on 2019/6/28
      */
@@ -38,14 +38,14 @@ public interface BaseCrudDao<T> extends BaseDao {
     int updatePartially(T entity);
 
     /**
-     * 删除数据
+     * 根据主键删除数据
      *
      * @author Created by zc on 2019/6/28
      */
     int delete(Long id);
 
     /**
-     * 删除数据
+     * 根据传入对象的主键删除数据
      *
      * @author Created by zc on 2019/6/28
      */

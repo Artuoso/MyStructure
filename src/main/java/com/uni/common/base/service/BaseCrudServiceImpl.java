@@ -43,14 +43,15 @@ public abstract class BaseCrudServiceImpl<D extends BaseCrudDao<T>, T extends Ba
     @Override
     @Transactional
     public int insert(T entity) {
+        Date currentDate = new Date();
         // 添加创建时间和更新时间
-        entity.setCreateTime(new Date());
-        entity.setUpdateTime(new Date());
+        entity.setCreateTime(currentDate);
+        entity.setUpdateTime(currentDate);
         return dao.insert(entity);
     }
 
     /**
-     * 更新数据
+     * 更新主键数据
      *
      * @param entity
      * @author Created by zc on 2019/6/28
@@ -77,7 +78,7 @@ public abstract class BaseCrudServiceImpl<D extends BaseCrudDao<T>, T extends Ba
     }
 
     /**
-     * 删除数据
+     * 根据主键删除数据
      *
      * @param id
      * @author Created by zc on 2019/6/28
@@ -89,7 +90,7 @@ public abstract class BaseCrudServiceImpl<D extends BaseCrudDao<T>, T extends Ba
     }
 
     /**
-     * 删除数据
+     * 根据传入对象的主键删除数据
      *
      * @param entity
      * @author Created by zc on 2019/6/28
