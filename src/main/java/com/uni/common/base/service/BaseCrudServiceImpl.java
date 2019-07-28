@@ -51,7 +51,7 @@ public abstract class BaseCrudServiceImpl<D extends BaseCrudDao<T>, T extends Ba
     }
 
     /**
-     * 更新主键数据
+     * 根据主键更新数据
      *
      * @param entity
      * @author Created by zc on 2019/6/28
