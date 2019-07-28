@@ -23,7 +23,7 @@ public class DemoTest {
     private DemoUserService demoUserService;
 
     /**
-     *
+     * log4j2日志测试
      *
      * @author Created by zc on 2019/7/28
      */
@@ -74,7 +74,15 @@ public class DemoTest {
         DemoUser selectUser = demoUserService.get(5L);
         selectUser.setSectName("方寸山");
         demoUserService.update(selectUser);
+    }
 
+    /**
+     * 更新部分数据测试
+     *
+     * @author Created by zc on 2019/7/28
+     */
+    @Test
+    public void updatePartiallyTest() {
         DemoUser upUser = new DemoUser();
         upUser.setId(2L);
         upUser.setRoundCount(20);
