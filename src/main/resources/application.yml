@@ -4,7 +4,16 @@ server:
 spring:
   mvc:
     servlet:
-      path: /uniapi
+      path: /lychee
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+    servlet:
+      content-type: text/html
 
   datasource:
     name: unids
