@@ -3,6 +3,7 @@ package com.uni.common.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -21,86 +22,33 @@ import java.sql.SQLException;
 @ConfigurationProperties(prefix = "spring.datasource")
 public class DruidConfig {
 
+    @Value("${spring.datasource.driver-class-name}")
+    private String driverClassName;
+
+    @Value("${spring.datasource.url}")
     private String url;
 
+    @Value("${spring.datasource.username}")
     private String username;
 
+    @Value("${spring.datasource.password}")
     private String password;
 
+    @Value("${spring.datasource.maxActive}")
     private int maxActive;
 
+    @Value("${spring.datasource.initialSize}")
     private int initialSize;
 
+    @Value("${spring.datasource.maxWait}")
     private int maxWait;
 
+    @Value("${spring.datasource.minIdle}")
     private int minIdle;
 
     /** 监控统计拦截的filters，如果去掉后监控界面sql将无法统计 */
+    @Value("${spring.datasource.filters}")
     private String filters;
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getMaxActive() {
-        return maxActive;
-    }
-
-    public void setMaxActive(int maxActive) {
-        this.maxActive = maxActive;
-    }
-
-    public int getInitialSize() {
-        return initialSize;
-    }
-
-    public void setInitialSize(int initialSize) {
-        this.initialSize = initialSize;
-    }
-
-    public int getMaxWait() {
-        return maxWait;
-    }
-
-    public void setMaxWait(int maxWait) {
-        this.maxWait = maxWait;
-    }
-
-    public int getMinIdle() {
-        return minIdle;
-    }
-
-    public void setMinIdle(int minIdle) {
-        this.minIdle = minIdle;
-    }
-
-    public String getFilters() {
-        return filters;
-    }
-
-    public void setFilters(String filters) {
-        this.filters = filters;
-    }
 
     /**
      * 注册 Servlet 组件
@@ -139,7 +87,7 @@ public class DruidConfig {
     @Bean
     public DataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-//        dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
+        dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
