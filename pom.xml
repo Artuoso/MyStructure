@@ -19,7 +19,7 @@
         <java.version>1.8</java.version>
         <!-- mysql驱动版本。mysql数据库8.0版本以下驱动使用{5.1.47}，8.0及以上使用{8.0.16} -->
         <!--<mysql.connector.version>5.1.47</mysql.connector.version>-->
-        <mysql.connector.version>8.0.16</mysql.connector.version>
+        <mysql.connector.version>8.0.28</mysql.connector.version>
     </properties>
 
     <dependencies>
